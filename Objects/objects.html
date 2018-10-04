@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Strategic Software</title>
+</head>
+<body>
+  <a href="../index.html">Home</a>
+  <h1>Objects</h1>
+  <p>This page documents objects. The Javascript for this page logs to the console, please open the Web Console on your device.</p>
+
+  <h2>Javascript</h2>
+  <div class="javascript">
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+    <span style="color: #888888">  In javascript, we can create object literals using brackets {}</span>
+    <span style="color: #888888">  White space and newlines are irrelevant, so we can space out the</span>
+    <span style="color: #888888">    code to be more readable.</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">var</span> dog <span style="color: #333333">=</span> {
+      breed<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Shiba Inu&quot;</span>,
+      name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Jimmothy&quot;</span>
+    };
+    <span style="color: #888888">//the object itself can be logged</span>
+    console.log(dog);
+    <span style="color: #888888">//the properties can also be logged</span>
+    console.log(dog.breed);
+    console.log(dog.name);
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Object literals can be created with methods as well. This is done</span>
+    <span style="color: #888888">    by assigning a property to a function definition</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">var</span> cat <span style="color: #333333">=</span> {
+      color<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Orange&quot;</span>,
+      name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Frank&quot;</span>,
+      speak<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span>(){
+        console.log(<span style="background-color: #fff0f0">&quot;Meow&quot;</span>);
+      }
+    }
+    <span style="color: #888888">//the function assignment itself can be accessed</span>
+    console.log(cat.speak);
+    <span style="color: #888888">//use () to call the method</span>
+    cat.speak();
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Methods can access object properties using the &quot;this&quot; keyword</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">var</span> parrot <span style="color: #333333">=</span> {
+      name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;George&quot;</span>,
+      speak<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span>(){
+        console.log(<span style="background-color: #fff0f0">&quot;Hello, my name is &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name);
+      }
+    }
+    parrot.speak();
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Properties and methods can be added to objects, and object properties can be</span>
+    <span style="color: #888888">    edited directly</span>
+    <span style="color: #888888">*/</span>
+    dog.breed <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Samoyed&quot;</span>;
+    dog.speak <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(){
+      console.log(<span style="background-color: #fff0f0">&quot;Bork&quot;</span>);
+    }
+    console.log(dog.breed);
+    dog.speak();
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Based on this knowledge, we can use Javscript functions to construct</span>
+    <span style="color: #888888">    and return and object. Important: this is not generally how we will</span>
+    <span style="color: #888888">    use classes and constructors, this is for better understanding objects</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">function</span> makeAnimal(){
+      <span style="color: #888888">//create an animal</span>
+      <span style="color: #008800; font-weight: bold">var</span> animal <span style="color: #333333">=</span> {};
+      animal.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;name&quot;</span>;
+      animal.age <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;age&quot;</span>;
+      animal.speak <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(){
+        console.log(<span style="background-color: #fff0f0">&quot;Hello, my name is &quot;</span><span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name);
+      }
+      <span style="color: #888888">//return the animal object</span>
+      <span style="color: #008800; font-weight: bold">return</span> animal;
+    }
+
+    <span style="color: #888888">//assign a variable to be an object produced by the makeAnimal function</span>
+    <span style="color: #008800; font-weight: bold">var</span> dolphin <span style="color: #333333">=</span> makeAnimal();
+    console.log(dolphin.name);
+    dolphin.speak();
+
+    <span style="color: #888888">//the object &quot;animal&quot; is local to the makeAnimal function, so doing this will not work</span>
+    <span style="color: #888888">//animal.speak(); /*produces error*/</span>
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Functions can also take parameters to construct different objects</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">function</span> makePerson(name, age){
+      <span style="color: #008800; font-weight: bold">var</span> person <span style="color: #333333">=</span> {};
+      person.name <span style="color: #333333">=</span> name;
+      person.age <span style="color: #333333">=</span> age;
+      person.speak <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(){
+        console.log(<span style="background-color: #fff0f0">&quot;Hello, my name is &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name);
+      }
+      <span style="color: #008800; font-weight: bold">return</span> person;
+    }
+
+    <span style="color: #008800; font-weight: bold">var</span> adam <span style="color: #333333">=</span> makePerson(<span style="background-color: #fff0f0">&quot;Adam&quot;</span>, <span style="color: #0000DD; font-weight: bold">17</span>);
+    <span style="color: #008800; font-weight: bold">var</span> shoop <span style="color: #333333">=</span> makePerson(<span style="background-color: #fff0f0">&quot;Shilpa&quot;</span>, <span style="color: #0000DD; font-weight: bold">17</span>);
+    adam.speak();
+    shoop.speak();
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Classes are more commonly done in a way more similar to Java. The object</span>
+    <span style="color: #888888">    constructor is built into the class definition. By convention, the first</span>
+    <span style="color: #888888">    letter should be capitalized. The constructor function does not have to return</span>
+    <span style="color: #888888">    anything, the object will be obtained using the &quot;new&quot; keyword.</span>
+
+    <span style="color: #888888">  Because there is nothing being returned, class properties cannot be assigned to a</span>
+    <span style="color: #888888">    local object literal. Therefore, use the &quot;this&quot; keyword when assigning properties</span>
+    <span style="color: #888888">    and methods.</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">function</span> Person(name, age){
+      <span style="color: #008800; font-weight: bold">this</span>.name <span style="color: #333333">=</span> name;
+      <span style="color: #008800; font-weight: bold">this</span>.age <span style="color: #333333">=</span> age;
+      <span style="color: #008800; font-weight: bold">this</span>.speak <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(){
+        console.log(<span style="background-color: #fff0f0">&quot;Hello, my name is &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name);
+      }
+    }
+    <span style="color: #888888">//objects are initialized with the &quot;new&quot; keyword, the same as in Java</span>
+    <span style="color: #008800; font-weight: bold">var</span> jacob <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Person(<span style="background-color: #fff0f0">&quot;Jacob&quot;</span>, <span style="color: #0000DD; font-weight: bold">17</span>);
+    jacob.speak();
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  In general, methods should not be defined within the constructor like they</span>
+    <span style="color: #888888">    are in the example above. In this example, every time an object is created,</span>
+    <span style="color: #888888">    the speak function is defined, and stored for that object. This is somewhat</span>
+    <span style="color: #888888">    similar to private methods in Java.</span>
+
+    <span style="color: #888888">  When logging the object itself, we can see that each has it&#39;s own version</span>
+    <span style="color: #888888">    of an identical function.</span>
+    <span style="color: #888888">*/</span>
+    <span style="color: #008800; font-weight: bold">var</span> aditya <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Person(<span style="background-color: #fff0f0">&quot;Aditya&quot;</span>,<span style="color: #0000DD; font-weight: bold">17</span>);
+    console.log(jacob);
+    console.log(aditya);
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  In most cases, proper practice is to use Javascript&#39;s &quot;prototype&quot; to add methods</span>
+    <span style="color: #888888">    onto the class. All objects created will still have access to the method, and</span>
+    <span style="color: #888888">    functionality will be identical, but performance is improved when initializing</span>
+    <span style="color: #888888">    objects.</span>
+
+    <span style="color: #888888">    When using prototype to add a method, instance variables can still be accessed</span>
+    <span style="color: #888888">      using the &quot;this&quot; keyword.</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">function</span> Animal(name, age){
+      <span style="color: #008800; font-weight: bold">this</span>.name <span style="color: #333333">=</span> name;
+      <span style="color: #008800; font-weight: bold">this</span>.age <span style="color: #333333">=</span> age
+    }
+    Animal.prototype.speak <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(){
+      console.log(<span style="background-color: #fff0f0">&quot;Hello, my name is &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name);
+    }
+
+    <span style="color: #008800; font-weight: bold">var</span> frog <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Animal(<span style="background-color: #fff0f0">&quot;Fred&quot;</span>, <span style="color: #0000DD; font-weight: bold">27</span>);
+    <span style="color: #008800; font-weight: bold">var</span> fish <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Animal(<span style="background-color: #fff0f0">&quot;Joe&quot;</span>, <span style="color: #0000DD; font-weight: bold">14</span>);
+    frog.speak();
+    fish.speak();
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  If we log the Animal objects created with the prototype constructor,</span>
+    <span style="color: #888888">    we can see that the speak method is not stored as a literal on the object.</span>
+    <span style="color: #888888">    This is also beneficial, because if we were to edit the speak method after the objects</span>
+    <span style="color: #888888">    were initialized, Animal objects would be able to access the updated method,</span>
+    <span style="color: #888888">    while Person objects would continue to use the method stored on their instance.</span>
+    <span style="color: #888888">*/</span>
+    console.log(frog);
+    console.log(fish);
+    </pre></div>
+
+  </div>
+
+
+  <script src="main.js"></script>
+</body>
+</html>

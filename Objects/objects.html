@@ -14,7 +14,7 @@
 
   <h2>Javascript</h2>
   <div class="javascript">
-    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/*</span>
     <span style="color: #888888">  In javascript, we can create object literals using brackets {}</span>
     <span style="color: #888888">  White space and newlines are irrelevant, so we can space out the</span>
     <span style="color: #888888">    code to be more readable.</span>
@@ -107,7 +107,7 @@
     console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
 
     <span style="color: #888888">/*</span>
-    <span style="color: #888888">  Functions can also take parameters to construct different objects</span>
+    <span style="color: #888888">  Functions can also take parameters to construct different objects. This is called a factory function.</span>
     <span style="color: #888888">*/</span>
 
     <span style="color: #008800; font-weight: bold">function</span> makePerson(name, age){
@@ -199,7 +199,119 @@
     <span style="color: #888888">*/</span>
     console.log(frog);
     console.log(fish);
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  In newer versions of Javascript, we also have classes that are just like Classes</span>
+    <span style="color: #888888">    in other languages. This allows us to use static, extend, and other stuff</span>
+    <span style="color: #888888">    people might know from Java.</span>
+
+    <span style="color: #888888">  Instance variables must be defined in the constructor method</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">class</span> ClassExample {
+      constructor(){
+        <span style="color: #008800; font-weight: bold">this</span>.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;test&quot;</span>;
+      }
+      speak() {
+        console.log(<span style="background-color: #fff0f0">&quot;This is a test&quot;</span>)
+      }
+    }
+
+    <span style="color: #008800; font-weight: bold">var</span> testClassExample <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ClassExample();
+    console.log(testClassExample.name)
+    testClassExample.speak();
+
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  If we create another ClassExample object, we can see that this</span>
+    <span style="color: #888888">    syntax behaves identically to the constructor syntax with regard to</span>
+    <span style="color: #888888">    prototype. Instance variables are independant, but the methods are prototype.</span>
+    <span style="color: #888888">*/</span>
+
+
+    <span style="color: #008800; font-weight: bold">var</span> testClassExample2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ClassExample();
+    console.log(testClassExample);
+    console.log(testClassExample2);
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  Using this new syntax, we can demonstrate a more complex example. This class is</span>
+    <span style="color: #888888">    going to demonstrate special forms of getting and setting in Javascript, as well</span>
+    <span style="color: #888888">    as showing how instance variables can be read and mutated by other methods.</span>
+    <span style="color: #888888">*/</span>
+
+    <span style="color: #008800; font-weight: bold">class</span> Robot {
+      constructor(number, name, batteryCharge){
+        <span style="color: #008800; font-weight: bold">this</span>.number <span style="color: #333333">=</span> number;
+        <span style="color: #008800; font-weight: bold">this</span>.name <span style="color: #333333">=</span> name;
+        <span style="color: #008800; font-weight: bold">this</span>.batteryCharge <span style="color: #333333">=</span> batteryCharge;
+      }
+      <span style="color: #888888">/*</span>
+    <span style="color: #888888">    Getter:</span>
+    <span style="color: #888888">      A method specified with the &quot;get&quot; keyword, that returns a value, can have</span>
+    <span style="color: #888888">        that value accessed as if it were a property. That is, if the method name</span>
+    <span style="color: #888888">        ( without ()) is called, it will return the return value, rather than the</span>
+    <span style="color: #888888">        function literal.</span>
+    <span style="color: #888888">  */</span>
+      get teamName(){
+        <span style="color: #008800; font-weight: bold">return</span> (<span style="background-color: #fff0f0">&quot;Team &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.number.toString() <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name)
+      }
+      <span style="color: #888888">/*</span>
+    <span style="color: #888888">    The same can be accomplished with any other method, but when it is called, it</span>
+    <span style="color: #888888">      must have () at the end, or it will return the function literal.</span>
+    <span style="color: #888888">  */</span>
+      getTeamName(){
+        <span style="color: #008800; font-weight: bold">return</span> (<span style="background-color: #fff0f0">&quot;Team &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.number.toString() <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name)
+      }
+      <span style="color: #888888">/*</span>
+    <span style="color: #888888">    Setter:</span>
+    <span style="color: #888888">      Setting methods are like getters, but in the other direction. These</span>
+    <span style="color: #888888">        are kind of weirder. With the set keyword, we can call the method as</span>
+    <span style="color: #888888">        if accessing a property, and if we give parameters to the set method,</span>
+    <span style="color: #888888">        we input them by assignment.</span>
+    <span style="color: #888888">      Despite the name, we don&#39;t need to just set an instance variable to a</span>
+    <span style="color: #888888">        parameter. The method can also do calculations, or increment the</span>
+    <span style="color: #888888">        variable. Setter functions msut have exactly 1 argument.</span>
+    <span style="color: #888888">  */</span>
+      set charge(amount){
+        <span style="color: #008800; font-weight: bold">this</span>.batteryCharge <span style="color: #333333">+=</span> amount;
+      }
+      <span style="color: #888888">//again, the same can be accomplished with other methods</span>
+      chargeBattery(amount){
+        <span style="color: #008800; font-weight: bold">this</span>.batteryCharge <span style="color: #333333">+=</span> amount;
+      }
+    }
+    <span style="color: #008800; font-weight: bold">var</span> bombSquad <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Robot(<span style="color: #0000DD; font-weight: bold">16</span>, <span style="background-color: #fff0f0">&quot;Bomb Squad&quot;</span>, <span style="color: #0000DD; font-weight: bold">12</span>);
+    <span style="color: #888888">//Instance variables</span>
+    console.log(bombSquad.number);
+    console.log(bombSquad.name);
+    console.log(bombSquad.batteryCharge);
+    <span style="color: #888888">//Get keyword</span>
+    console.log(bombSquad.teamName);
+    <span style="color: #888888">//Getter method (outputs the same thing)</span>
+    console.log(bombSquad.getTeamName())
+
+    <span style="color: #888888">//Showing setting</span>
+    bombSquad.charge <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">3</span>; <span style="color: #888888">//I find this counter intuitive, personally</span>
+    console.log(bombSquad.batteryCharge);
+    bombSquad.chargeBattery(<span style="color: #0000DD; font-weight: bold">3</span>);
+    console.log(bombSquad.batteryCharge);
+
+    <span style="color: #888888">/*</span>
+    <span style="color: #888888">  This class syntax is nice, because all methods are shown neatly in the same place.</span>
+    <span style="color: #888888">    Because it is relatively newer, code references will often show the older ways</span>
+    <span style="color: #888888">    of creating object templates, generally the object constructor syntax. For our</span>
+    <span style="color: #888888">    purposes, we will mostly use the class syntax, for familiarity.</span>
+    <span style="color: #888888">*/</span>
+
+    console.log(<span style="background-color: #fff0f0">&quot;------------------------------------------------------&quot;</span>) <span style="color: #888888">//Line break</span>
     </pre></div>
+
 
   </div>
 

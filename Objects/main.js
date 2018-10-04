@@ -91,7 +91,7 @@ dolphin.speak();
 console.log("------------------------------------------------------") //Line break
 
 /*
-  Functions can also take parameters to construct different objects
+  Functions can also take parameters to construct different objects. This is called a factory function.
 */
 
 function makePerson(name, age){
@@ -183,3 +183,114 @@ console.log("------------------------------------------------------") //Line bre
 */
 console.log(frog);
 console.log(fish);
+
+console.log("------------------------------------------------------") //Line break
+
+/*
+  In newer versions of Javascript, we also have classes that are just like Classes
+    in other languages. This allows us to use static, extend, and other stuff
+    people might know from Java.
+
+  Instance variables must be defined in the constructor method
+*/
+
+class ClassExample {
+  constructor(){
+    this.name = "test";
+  }
+  speak() {
+    console.log("This is a test")
+  }
+}
+
+var testClassExample = new ClassExample();
+console.log(testClassExample.name)
+testClassExample.speak();
+
+
+console.log("------------------------------------------------------") //Line break
+
+/*
+  If we create another ClassExample object, we can see that this
+    syntax behaves identically to the constructor syntax with regard to
+    prototype. Instance variables are independant, but the methods are prototype.
+*/
+
+
+var testClassExample2 = new ClassExample();
+console.log(testClassExample);
+console.log(testClassExample2);
+
+console.log("------------------------------------------------------") //Line break
+
+/*
+  Using this new syntax, we can demonstrate a more complex example. This class is
+    going to demonstrate special forms of getting and setting in Javascript, as well
+    as showing how instance variables can be read and mutated by other methods.
+*/
+
+class Robot {
+  constructor(number, name, batteryCharge){
+    this.number = number;
+    this.name = name;
+    this.batteryCharge = batteryCharge;
+  }
+  /*
+    Getter:
+      A method specified with the "get" keyword, that returns a value, can have
+        that value accessed as if it were a property. That is, if the method name
+        ( without ()) is called, it will return the return value, rather than the
+        function literal.
+  */
+  get teamName(){
+    return ("Team " + this.number.toString() + ": " + this.name)
+  }
+  /*
+    The same can be accomplished with any other method, but when it is called, it
+      must have () at the end, or it will return the function literal.
+  */
+  getTeamName(){
+    return ("Team " + this.number.toString() + ": " + this.name)
+  }
+  /*
+    Setter:
+      Setting methods are like getters, but in the other direction. These
+        are kind of weirder. With the set keyword, we can call the method as
+        if accessing a property, and if we give parameters to the set method,
+        we input them by assignment.
+      Despite the name, we don't need to just set an instance variable to a
+        parameter. The method can also do calculations, or increment the
+        variable. Setter functions msut have exactly 1 argument.
+  */
+  set charge(amount){
+    this.batteryCharge += amount;
+  }
+  //again, the same can be accomplished with other methods
+  chargeBattery(amount){
+    this.batteryCharge += amount;
+  }
+}
+var bombSquad = new Robot(16, "Bomb Squad", 12);
+//Instance variables
+console.log(bombSquad.number);
+console.log(bombSquad.name);
+console.log(bombSquad.batteryCharge);
+//Get keyword
+console.log(bombSquad.teamName);
+//Getter method (outputs the same thing)
+console.log(bombSquad.getTeamName())
+
+//Showing setting
+bombSquad.charge = 3; //I find this counter intuitive, personally
+console.log(bombSquad.batteryCharge);
+bombSquad.chargeBattery(3);
+console.log(bombSquad.batteryCharge);
+
+/*
+  This class syntax is nice, because all methods are shown neatly in the same place.
+    Because it is relatively newer, code references will often show the older ways
+    of creating object templates, generally the object constructor syntax. For our
+    purposes, we will mostly use the class syntax, for familiarity.
+*/
+
+console.log("------------------------------------------------------") //Line break

@@ -64,8 +64,9 @@ console.log("------------------------------------------------------") //Line bre
 
 /*
   Based on this knowledge, we can use Javscript functions to construct
-    and return and object. Important: this is not generally how we will
-    use classes and constructors, this is for better understanding objects
+    and return and object. This is called a factory function. Some people argue that
+    this is the correct way to create objects; not classes. Another page will look into
+    this more deeply.
 */
 
 function makeAnimal(){
@@ -291,6 +292,9 @@ console.log(bombSquad.batteryCharge);
     Because it is relatively newer, code references will often show the older ways
     of creating object templates, generally the object constructor syntax. For our
     purposes, we will mostly use the class syntax, for familiarity.
+
+    There is an ongoing debate as to if the class syntax is actually a good thing.
+    It's familiar, but some say that this is a poor implementation to imitate Java.
 */
 
 console.log("------------------------------------------------------") //Line break

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data viewing</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <a href="../index.html">Home</a>
+    <div class="authorization">
+      <button id="authorize_button" style="display: none;">Authorize</button>
+      <button id="signout_button" style="display: none;">Sign Out</button>
+    </div>
+
+    <h1>Data viewing</h1>
+    <p>The following is a proof of concept of getting data from a spreadsheet</p>
+    <a href="https://docs.google.com/spreadsheets/d/1_Vr3VQen93ncj77t83kX_6Y8XuqWsY2INNP3qiPj16s/edit?usp=sharing" target="_blank">Link to the Spreadsheet</a>
+    <p>Both the Spreadsheet and this page require logging in with a District 203 account.</p>
+    <table id="outputTable">
+    </table>
+
+    <script type="text/javascript" src='main.js'></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
+</html>

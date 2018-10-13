@@ -79,11 +79,15 @@ function main(){
   let pocCaller = createCaller("1_Vr3VQen93ncj77t83kX_6Y8XuqWsY2INNP3qiPj16s", "A1:C", "RAW", "INSERT_ROWS"); //create caller is defined at the bottom of the page
 
   //Define DOM elements
+  const formArea = document.querySelector(".pocForm");
   const textInput = document.getElementById("textForm");
   const colorInput = document.getElementById("colorForm");
   const buttonInput = document.getElementById("buttonForm");
   const submitButton = document.getElementById("submitButton");
   //This can be done more efficiently with querySelectorAll, but I'm showing each individual event here
+
+  //Make form visible if authorized
+  formArea.style.display = 'block';
 
   //setup event listeners
   textInput.addEventListener("change", () => console.log(textInput.value));

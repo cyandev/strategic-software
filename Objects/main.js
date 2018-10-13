@@ -298,3 +298,21 @@ console.log(bombSquad.batteryCharge);
 */
 
 console.log("------------------------------------------------------") //Line break
+
+
+var plus2 = val => val + 2;
+
+var plus3 = val => val + 3;
+
+var compose = (f, g) => x => f(g(x));
+
+
+// var compose = function(f, g) {
+//   //return a composed function
+//   return function(x) {
+//     return f(g(x));
+//   };
+// };
+
+console.log(compose(plus2, plus3)(10));
+// "15"

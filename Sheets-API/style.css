@@ -1,0 +1,8 @@
+.authorization {
+  text-align: right;
+  background-color: green;
+}
+
+.authorization button {
+  float: right;
+}

@@ -1,6 +1,6 @@
 // Client ID and API key from the Developer Console
-var CLIENT_ID = '60510912763-l4vq9eueehj4lgd3i547k8risqpbdmjf.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyCZNBqRLg7HOqyR_6u4HrWF2ixG7gI9Uac';
+var CLIENT_ID = '598385287162-1hp35lk1ar7jo98cjt10t83r2b053h1h.apps.googleusercontent.com';
+var API_KEY = 'AIzaSyDs_SMb0S5fEaeZcb9MreZY0o7JIBIHo9I';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
@@ -58,7 +58,7 @@ function updateSigninStatus(isSignedIn) {
 }
 
 /**
- *  Sign in the user upon button click.
+ *    Sign in the user upon button click.
  */
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
@@ -73,60 +73,58 @@ function handleSignoutClick(event) {
 }
 
 /**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-  var pre = document.getElementById('content');
-  var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
+*   Main body of code to be run after the client is authorized
+*/
+function main(){
+  let pocCaller = createCaller("1_Vr3VQen93ncj77t83kX_6Y8XuqWsY2INNP3qiPj16s", "A1:C", "RAW", "INSERT_ROWS"); //create caller is defined at the bottom of the page
+
+  //Define DOM elements
+  const textInput = document.getElementById("textForm");
+  const colorInput = document.getElementById("colorForm");
+  const buttonInput = document.getElementById("buttonForm");
+  const submitButton = document.getElementById("submitButton");
+  //This can be done more efficiently with querySelectorAll, but I'm showing each individual event here
+
+  //setup event listeners
+  textInput.addEventListener("change", () => console.log(textInput.value));
+  colorInput.addEventListener("change", () => console.log(colorInput.value));
+  buttonInput.addEventListener("click", () => buttonInput.value++);
+  //submit event listener
+  submitButton.addEventListener("click", handleSubmit); //event listeners can also be given named functions
+
+  /**
+  *   Calls the google api to record values and resets form
+  */
+  function handleSubmit(){
+    let formValues = [[textInput.value,colorInput.value,buttonInput.value]];
+    pocCaller(formValues).then(response => console.log(response.result)).catch(err => console.log(err.result));
+    textInput.value = "";
+    colorInput.value ="000000";
+    buttonInput.value = 0;
+  }
+
 }
 
-function main(){
-  //Code in this function is run if the user has been authorized
-  //Requests to the google api should be called (and defined maybe?) here
-  //TODO check what the proper practice is on nested functions
+/**
+*   Curried function to create response generators
+*   @param spreadsheetId The ID of the spreadsheet to update.
+*   @param range The A1 notation of a range to search for a logical table of data.
+*   @param valueInputOption How the input data should be interpreted. (RAW or USER_ENTERED)
+*   @param insertDataOption How the input data should be inserted. (OVERWRITE or INSERT_ROWS)
+*
+*   @param values The spreadsheet values in nested array form.
+*/
 
-  document.querySelector(".dummy").innerHTML = "Authorized, you can now modify the spreadsheet through this input field"
-
-  function writeSheet(range,values){
-    /*
-      Takes range argument in form of A1 string notation including sheet name
-      values are in 2D array form
-      array of rows, which are arrays of values
-      [[row1],[row2]]
-    */
-    var body = {
-      values: values
-    };
-
-    gapi.client.sheets.spreadsheets.values.update({
-      spreadsheetId: '1oBHeLAUu9-CPasNNavU0_ZBOFTUNMLEC4ehV3AiwLRA',
-      range: range,
-      valueInputOption:'RAW',
-      resource: body
-    }).then((response) => {
-      //This isn't strictly necessary
-      var result = response.result;
-      console.log(`${result.updatedCells} cells updated.`);
-    });
+let createCaller = (spreadsheetId, range, valueInputOption, insertDataOption) => (values) => {
+  var params = {
+    spreadsheetId: spreadsheetId,
+    range: range,
+    valueInputOption: valueInputOption,
+    insertDataOption, insertDataOption
   }
-
-  function makeRequest(cell){ //returns a request promise
-    var request = gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '1oBHeLAUu9-CPasNNavU0_ZBOFTUNMLEC4ehV3AiwLRA',
-      range: cell,
-    });
-    return request
-    /*
-      Access data by
-      makeRequest(cell in A1 notation including sheet name).then(function(response){
-    });
-    or pass a seperate function
-    values are at response.result.values
-    */
+  var valueRangeBody = {
+    values: values
   }
-
+  var request = gapi.client.sheets.spreadsheets.values.append(params, valueRangeBody);
+  return request;
 }

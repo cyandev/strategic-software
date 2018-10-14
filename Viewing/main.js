@@ -93,10 +93,12 @@ function main(){
       outputTable.append(row);
     });
     let textInputs = valuesArr.map(rowArr => rowArr[0]);
+    let colorInputs = valuesArr.map(rowArr => rowArr[1]);
     let buttonPresses = valuesArr.map(rowArr => rowArr[2]);
     textInputs.splice(0,1);
+    colorInputs.splice(0,1);
     buttonPresses.splice(0,1);
-    let chart = new ApexCharts(chartElement, barMaker(buttonPresses, textInputs));
+    let chart = new ApexCharts(chartElement, barMaker(buttonPresses, textInputs, colorInputs.reverse()));
     chart.render();
   });
 }
@@ -133,9 +135,10 @@ function makeTableItem(tableValue){
 *
 *   @param {array} data the data to show
 *   @param {array} categories the labels to show along the x axis
+*   @param {array} colors the color(s) of the series
 */
 
-const createChartMaker = (type, name) => (data, categories) => ({
+const createChartMaker = (type, name) => (data, categories, colors) => ({
   chart: {
     type: type
   },
@@ -145,5 +148,6 @@ const createChartMaker = (type, name) => (data, categories) => ({
   }],
   xaxis: {
     categories: categories
-  }
+  },
+  colors: colors
 });

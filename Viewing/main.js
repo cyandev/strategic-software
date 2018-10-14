@@ -1,6 +1,6 @@
 // Client ID and API key from the Developer Console
-var CLIENT_ID = '598385287162-m4r7llc22tuvgcetipov7gr0crpvld17.apps.googleusercontent.com';
-//var CLIENT_ID = '598385287162-1hp35lk1ar7jo98cjt10t83r2b053h1h.apps.googleusercontent.com';
+var CLIENT_ID = '598385287162-m4r7llc22tuvgcetipov7gr0crpvld17.apps.googleusercontent.com'; //Production
+//var CLIENT_ID = '598385287162-1hp35lk1ar7jo98cjt10t83r2b053h1h.apps.googleusercontent.com'; //Testing
 var API_KEY = 'AIzaSyDs_SMb0S5fEaeZcb9MreZY0o7JIBIHo9I';
 
 // Array of API discovery doc URLs for APIs used by the quickstart
@@ -77,8 +77,13 @@ function handleSignoutClick(event) {
 *   Main body of code to be run after the client is authorized
 */
 function main(){
+
   const outputTable = document.getElementById("outputTable");
+  const chartElement = document.getElementById("chart");
   const pocGetCaller = createGetCaller("1_Vr3VQen93ncj77t83kX_6Y8XuqWsY2INNP3qiPj16s");
+  const barMaker = createChartMaker('bar', 'Button presses');
+  const lineMaker = createChartMaker('line', 'Button presses');
+
   let request = pocGetCaller("output!A1:C10");
   request.then(response => {
     let valuesArr = response.result.values;
@@ -87,6 +92,12 @@ function main(){
       rowArr.forEach(value => row.appendChild(makeTableItem(value)));
       outputTable.append(row);
     });
+    let textInputs = valuesArr.map(rowArr => rowArr[0]);
+    let buttonPresses = valuesArr.map(rowArr => rowArr[2]);
+    textInputs.splice(0,1);
+    buttonPresses.splice(0,1);
+    let chart = new ApexCharts(chartElement, barMaker(buttonPresses, textInputs));
+    chart.render();
   });
 }
 
@@ -115,3 +126,24 @@ function makeTableItem(tableValue){
   node.appendChild(textnode);
   return node;
 }
+/**
+*   Curried function to create chart option generators
+*   @param {string} type the type of chart to be drawn
+*   @param {string} name the name that the data represents
+*
+*   @param {array} data the data to show
+*   @param {array} categories the labels to show along the x axis
+*/
+
+const createChartMaker = (type, name) => (data, categories) => ({
+  chart: {
+    type: type
+  },
+  series: [{
+    name: name,
+    data: data
+  }],
+  xaxis: {
+    categories: categories
+  }
+});

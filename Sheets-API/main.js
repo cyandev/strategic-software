@@ -76,7 +76,7 @@ function handleSignoutClick(event) {
 *   Main body of code to be run after the client is authorized
 */
 function main(){
-  let pocCaller = createCaller("1m_Jfvrjd5ee02r2MNQRUnkueKmPPL4tG63fHt4geKkg", "A1:C", "RAW", "INSERT_ROWS"); //create caller is defined at the bottom of the page
+  let pocCaller = createCaller("1m_Jfvrjd5ee02r2MNQRUnkueKmPPL4tG63fHt4geKkg", "A1:AA", "RAW", "INSERT_ROWS"); //create caller is defined at the bottom of the page
 
   //Define DOM elements
   const formArea = document.querySelector(".pocForm");
@@ -100,7 +100,7 @@ function main(){
   *   Calls the google api to record values and resets form
   */
   function handleSubmit(){
-    let formValues = [[textInput.value,colorInput.value,buttonInput.value]];
+    let formValues = [[textInput.value.split(" ")]];
     pocCaller(formValues).then(response => console.log(response.result)).catch(err => console.log(err.result));
     textInput.value = "";
     colorInput.value ="000000";
